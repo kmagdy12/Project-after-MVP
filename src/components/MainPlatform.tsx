@@ -22,6 +22,7 @@ import MyVentures from './ventures/MyVentures';
 import VentureBuilder from './venture_builder/VentureBuilder';
 import { Search, Users, BarChart3, MessageSquare, Bell, Settings, Building2, TrendingUp, Globe, Filter, Plus, Star, MapPin, DollarSign, Calendar, Eye, Heart, Share2, Brain, Bookmark, Mail, Briefcase } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
+import MyServicesMain from './my_services/MyServicesMain';
 
 interface MainPlatformProps {
   profileCompleted: boolean;
@@ -36,6 +37,7 @@ const MainPlatform: React.FC<MainPlatformProps> = ({ profileCompleted, onReturnT
   const [hasVenturesInPipeline, setHasVenturesInPipeline] = useState(false);
   const [activeSocialSection, setActiveSocialSection] = useState('feed');
   const [activeExpertsMarketplaceSection, setActiveExpertsMarketplaceSection] = useState('discover-experts');
+  const [activeMyServicesSection, setActiveMyServicesSection] = useState('overview');
   const [activeTradingSection, setActiveTradingSection] = useState('portfolio-summary');
   const [activeInvestmentSection, setActiveInvestmentSection] = useState('portfolio-summary');
   const [activeMarketIntelligenceSection, setActiveMarketIntelligenceSection] = useState('intelligence-dashboard');
@@ -65,9 +67,10 @@ const MainPlatform: React.FC<MainPlatformProps> = ({ profileCompleted, onReturnT
 
   const navigationItems = [
     { id: 'social', label: 'Social Network', icon: Users },
+    { id: 'experts', label: 'Experts Marketplace', icon: MessageSquare },
+    { id: 'my-services', label: 'My Services', icon: Briefcase },
     { id: 'trading', label: 'Equity Trading', icon: TrendingUp },
-    { id: 'intelligence', label: 'Market Intelligence', icon: Brain },
-    { id: 'experts', label: 'Expert Marketplace', icon: MessageSquare }
+    { id: 'intelligence', label: 'Market Intelligence', icon: Brain }
   ];
 
   const opportunities = [
@@ -368,6 +371,7 @@ const MainPlatform: React.FC<MainPlatformProps> = ({ profileCompleted, onReturnT
                   activeExpertsMarketplaceSection={activeExpertsMarketplaceSection}
                   activeMarketIntelligenceSection={activeMarketIntelligenceSection}
                   activeTradingSection={activeTradingSection} // Pass activeTradingSection
+                  activeMyServicesSection={activeMyServicesSection}
                   activeTab={activeTab}
                   onClose={() => setIsSocialAICompanionOpen(false)}
                 />
@@ -433,6 +437,7 @@ const MainPlatform: React.FC<MainPlatformProps> = ({ profileCompleted, onReturnT
                   activeSocialSection={activeSocialSection}
                   activeExpertsMarketplaceSection={activeExpertsMarketplaceSection}
                   activeMarketIntelligenceSection={activeMarketIntelligenceSection}
+                  activeMyServicesSection={activeMyServicesSection}
                   activeTab={activeTab}
                   onClose={() => setIsSocialAICompanionOpen(false)}
                 />
@@ -474,6 +479,8 @@ const MainPlatform: React.FC<MainPlatformProps> = ({ profileCompleted, onReturnT
         return renderTradingTabContent(); // Use the new function for trading content
       case 'intelligence':
         return renderMarketIntelligenceTab();
+      case 'my-services':
+        return <MyServicesMain activeSection={activeMyServicesSection} onSectionChange={setActiveMyServicesSection} />;
       case 'experts':
         return (
           <div className="min-h-screen bg-gradient-to-br from-linkedin-background via-linkedin-dark to-linkedin-background">
@@ -756,6 +763,16 @@ const MainPlatform: React.FC<MainPlatformProps> = ({ profileCompleted, onReturnT
                     >
                       My Services
                     </button>
+                    <button 
+                      className="w-full text-left px-4 py-2 text-gray-300 hover:bg-linkedin-background/50 hover:text-white transition-colors relative z-[9999]"
+                      onClick={() => {
+                        setActiveTab('my-services');
+                        setActiveMyServicesSection('overview');
+                        setShowProfileDropdown(false);
+                      }}
+                     >
+                       My Services
+                     </button>
                     <button className="w-full text-left px-4 py-2 text-gray-300 hover:bg-linkedin-background/50 hover:text-white transition-colors relative z-[9999]">
                       Account Settings
                     </button>

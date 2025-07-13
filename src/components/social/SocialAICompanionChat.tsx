@@ -26,6 +26,7 @@ interface SocialAICompanionChatProps {
   activeExpertsMarketplaceSection?: string;
   activeTradingSection?: string;
   activeMarketIntelligenceSection?: string;
+  activeMyServicesSection?: string;
   activeTab?: string;
   onClose: () => void;
 }
@@ -35,6 +36,7 @@ const SocialAICompanionChat: React.FC<SocialAICompanionChatProps> = ({
   activeExpertsMarketplaceSection,
   activeTradingSection,
   activeMarketIntelligenceSection,
+  activeMyServicesSection,
   activeTab = 'social',
   onClose 
 }) => {
@@ -71,6 +73,78 @@ const SocialAICompanionChat: React.FC<SocialAICompanionChatProps> = ({
       };
       
       return intelligenceConfigs[activeMarketIntelligenceSection as keyof typeof intelligenceConfigs] || intelligenceConfigs['intelligence-dashboard'];
+    }
+    
+    if (tab === 'my-services' && activeMyServicesSection) {
+      const myServicesConfigs = {
+        'overview': {
+          title: "Service Portfolio Advisor",
+          icon: BarChart3,
+          role: "Analytical & Strategic",
+          description: "I analyze your service performance, suggest optimization strategies, and identify expansion opportunities",
+          capabilities: [
+            "Analyze service performance metrics and client feedback",
+            "Identify trends and patterns in your service delivery",
+            "Suggest pricing and packaging optimizations",
+            "Recommend new service opportunities based on market demand",
+            "Provide competitive analysis and positioning advice"
+          ]
+        },
+        'create-service': {
+          title: "Service Designer",
+          icon: Briefcase,
+          role: "Creative & Strategic",
+          description: "I help you design compelling service offerings with optimal pricing and positioning",
+          capabilities: [
+            "Suggest service descriptions and value propositions",
+            "Recommend competitive pricing strategies",
+            "Define clear deliverables and scope boundaries",
+            "Create service packages and tiered offerings",
+            "Optimize service descriptions for discoverability"
+          ]
+        },
+        'create-workshop': {
+          title: "Workshop Designer",
+          icon: Calendar,
+          role: "Educational & Strategic",
+          description: "I help you create engaging workshop experiences with effective learning outcomes",
+          capabilities: [
+            "Design workshop agendas and learning objectives",
+            "Suggest interactive activities and exercises",
+            "Recommend optimal workshop duration and pacing",
+            "Create pre and post-workshop materials",
+            "Optimize pricing and participant capacity"
+          ]
+        },
+        'client-management': {
+          title: "Client Relationship Advisor",
+          icon: Users,
+          role: "Relational & Analytical",
+          description: "I help you manage client relationships, identify opportunities, and improve satisfaction",
+          capabilities: [
+            "Analyze client engagement patterns and satisfaction",
+            "Suggest personalized communication strategies",
+            "Identify upselling and cross-selling opportunities",
+            "Recommend retention and reactivation tactics",
+            "Create client segmentation strategies"
+          ]
+        },
+        'session-management': {
+          title: "Session Optimization Assistant",
+          icon: Clock,
+          role: "Operational & Strategic",
+          description: "I help you deliver exceptional client sessions with effective planning and follow-up",
+          capabilities: [
+            "Create session agendas and preparation checklists",
+            "Suggest effective time management strategies",
+            "Generate session summaries and action items",
+            "Recommend follow-up communication templates",
+            "Analyze session effectiveness and outcomes"
+          ]
+        }
+      };
+      
+      return myServicesConfigs[activeMyServicesSection as keyof typeof myServicesConfigs] || myServicesConfigs['overview'];
     }
     
     if (tab === 'experts' && activeExpertsMarketplaceSection) {
@@ -743,6 +817,91 @@ const SocialAICompanionChat: React.FC<SocialAICompanionChatProps> = ({
                   <div className="flex items-center space-x-2">
                     <Lightbulb className="w-4 h-4 text-linkedin-light" />
                     <span className="text-sm text-white">Research methodology</span>
+                  </div>
+                </button>
+              </>
+            )}
+            
+            {activeTab === 'my-services' && activeMyServicesSection === 'overview' && (
+              <>
+                <button className="text-left p-3 bg-linkedin-card/50 hover:bg-linkedin-card rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <BarChart3 className="w-4 h-4 text-linkedin-light" />
+                    <span className="text-sm text-white">Analyze service performance</span>
+                  </div>
+                </button>
+                <button className="text-left p-3 bg-linkedin-card/50 hover:bg-linkedin-card rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <Target className="w-4 h-4 text-linkedin-light" />
+                    <span className="text-sm text-white">Suggest new service ideas</span>
+                  </div>
+                </button>
+              </>
+            )}
+            
+            {activeTab === 'my-services' && activeMyServicesSection === 'create-service' && (
+              <>
+                <button className="text-left p-3 bg-linkedin-card/50 hover:bg-linkedin-card rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <FileText className="w-4 h-4 text-linkedin-light" />
+                    <span className="text-sm text-white">Generate service description</span>
+                  </div>
+                </button>
+                <button className="text-left p-3 bg-linkedin-card/50 hover:bg-linkedin-card rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <DollarSign className="w-4 h-4 text-linkedin-light" />
+                    <span className="text-sm text-white">Suggest optimal pricing</span>
+                  </div>
+                </button>
+              </>
+            )}
+            
+            {activeTab === 'my-services' && activeMyServicesSection === 'create-workshop' && (
+              <>
+                <button className="text-left p-3 bg-linkedin-card/50 hover:bg-linkedin-card rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <Calendar className="w-4 h-4 text-linkedin-light" />
+                    <span className="text-sm text-white">Design workshop agenda</span>
+                  </div>
+                </button>
+                <button className="text-left p-3 bg-linkedin-card/50 hover:bg-linkedin-card rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <Users className="w-4 h-4 text-linkedin-light" />
+                    <span className="text-sm text-white">Define target audience</span>
+                  </div>
+                </button>
+              </>
+            )}
+            
+            {activeTab === 'my-services' && activeMyServicesSection === 'client-management' && (
+              <>
+                <button className="text-left p-3 bg-linkedin-card/50 hover:bg-linkedin-card rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <MessageSquare className="w-4 h-4 text-linkedin-light" />
+                    <span className="text-sm text-white">Draft client communication</span>
+                  </div>
+                </button>
+                <button className="text-left p-3 bg-linkedin-card/50 hover:bg-linkedin-card rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <Target className="w-4 h-4 text-linkedin-light" />
+                    <span className="text-sm text-white">Identify upsell opportunities</span>
+                  </div>
+                </button>
+              </>
+            )}
+            
+            {activeTab === 'my-services' && activeMyServicesSection === 'session-management' && (
+              <>
+                <button className="text-left p-3 bg-linkedin-card/50 hover:bg-linkedin-card rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <FileText className="w-4 h-4 text-linkedin-light" />
+                    <span className="text-sm text-white">Generate session summary</span>
+                  </div>
+                </button>
+                <button className="text-left p-3 bg-linkedin-card/50 hover:bg-linkedin-card rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="w-4 h-4 text-linkedin-light" />
+                    <span className="text-sm text-white">Create action items</span>
                   </div>
                 </button>
               </>
