@@ -67,10 +67,9 @@ const MainPlatform: React.FC<MainPlatformProps> = ({ profileCompleted, onReturnT
 
   const navigationItems = [
     { id: 'social', label: 'Social Network', icon: Users },
-    { id: 'experts', label: 'Experts Marketplace', icon: MessageSquare },
-    { id: 'my-services', label: 'My Services', icon: Briefcase },
     { id: 'trading', label: 'Equity Trading', icon: TrendingUp },
-    { id: 'intelligence', label: 'Market Intelligence', icon: Brain }
+    { id: 'intelligence', label: 'Market Intelligence', icon: Brain },
+    { id: 'experts', label: 'Experts Marketplace', icon: MessageSquare }
   ];
 
   const opportunities = [
@@ -752,16 +751,6 @@ const MainPlatform: React.FC<MainPlatformProps> = ({ profileCompleted, onReturnT
                       }}
                     >
                       My Investments
-                    </button>
-                    <button 
-                      className="w-full text-left px-4 py-2 text-gray-300 hover:bg-linkedin-background/50 hover:text-white transition-colors relative z-[9999]"
-                      onClick={() => {
-                        setActiveTab('experts');
-                        setActiveExpertsMarketplaceSection('sessions');
-                        setShowProfileDropdown(false);
-                      }}
-                    >
-                      My Services
                     </button>
                     <button 
                       className="w-full text-left px-4 py-2 text-gray-300 hover:bg-linkedin-background/50 hover:text-white transition-colors relative z-[9999]"
